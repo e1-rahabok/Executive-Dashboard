@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ACME Corp Private Cloud</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F1EC;font-family:'Manrope',system-ui,sans-serif;color:#12202E;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+a.nav:hover{color:#0A7A6D}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #2F6FDE;outline-offset:2px;border-radius:8px}
+.num{font-variant-numeric:tabular-nums}
+.tbtn{transition:background .2s ease}
+.tbtn:hover{background:rgba(255,255,255,.06)}
+.cardbtn{transition:background .15s ease,border-color .15s ease}
+.cardbtn:hover{background:#12202E;color:#fff}
+.lift{transition:box-shadow .2s ease,transform .2s ease}
+.lift:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(11,27,43,.05),0 22px 40px -20px rgba(11,27,43,.28)}
+@keyframes flow{to{stroke-dashoffset:-40}}
+.flow{animation:flow 2.4s linear infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(14,159,142,.55)}100%{box-shadow:0 0 0 9px rgba(14,159,142,0)}}
+.live{animation:pulse 2s ease-out infinite}
+@media (prefers-reduced-motion:reduce){.flow,.live{animation:none}}
+</style>
+</helmet>
+
+<div id="top" style="max-width:1360px;margin:0 auto;padding:0 40px 72px;box-sizing:border-box;color:#12202E">
+
+<!-- HEADER -->
+<header style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:24px 0">
+  <div style="display:flex;align-items:center;gap:14px">
+    <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+      <rect width="46" height="46" rx="12" fill="#0B1B2B"/>
+      <path d="M23 8 L38 37 H30.5 L23 21.5 L15.5 37 H8 Z" fill="#fff"/>
+      <path d="M17.5 31 H28.5 L26.2 26.5 H19.8 Z" fill="#0B1B2B"/>
+      <rect x="14" y="31.5" width="18" height="4" rx="2" fill="#5EEAD4"/>
+    </svg>
+    <div>
+      <div style="font-weight:800;font-size:20px;letter-spacing:0.02em">ACME Corp</div>
+      <div style="font-size:13px;color:#5B6877">Private Cloud · Executive view</div>
+    </div>
+  </div>
+  <nav style="display:flex;gap:30px;font-size:14px;font-weight:600">
+    <a class="nav" href="#overview">Overview</a>
+    <a class="nav" href="#health">Health</a>
+    <a class="nav" href="#capacity">Capacity</a>
+    <a class="nav" href="#value">Value</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <div style="font-size:13px;color:#5B6877">Monday 19 October 2026 · Updated 20:29</div>
+    <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #E4E2DA;border-radius:999px;padding:6px 14px 6px 10px;font-size:13px;font-weight:700">
+      <span class="live" style="width:10px;height:10px;border-radius:50%;background:#0E9F8E;display:inline-block"></span>Live
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="overview" style="background:#0B1B2B;border-radius:32px;padding:52px 52px 44px;color:#fff;box-shadow:0 30px 60px -30px rgba(11,27,43,.55)">
+  <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:center">
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:28px">
+      <div style="font-size:12px;font-weight:800;letter-spacing:.14em;color:#5EEAD4">OUR PRIVATE CLOUD · 5 LOCATIONS</div>
+      <h1 style="margin:0;font-size:54px;line-height:1.04;font-weight:800;letter-spacing:-0.03em">ACME Corp Private Cloud</h1>
+      <p style="margin:0;font-size:18px;line-height:1.55;color:#A9BACB;max-width:460px">The largest computer in the organisation. Five sites work together as one machine. Every order, payment and report runs on it.</p>
+      <div style="display:flex;flex-direction:column;gap:22px;margin-top:4px">
+        <sc-for list="{{ heroRes }}" as="r" hint-placeholder-count="3">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.1em;color:#A9BACB;text-transform:uppercase">{{ r.name }}</div>
+              <div class="num" style="font-size:13px;font-weight:700;color:#5EEAD4">{{ r.useText }}</div>
+            </div>
+            <div class="num" style="font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:2px 0 2px">{{ r.value }}</div>
+            <div style="font-size:13px;color:#A9BACB;margin-bottom:10px">{{ r.eq }}</div>
+            <div style="height:6px;border-radius:3px;background:#1D3A52;overflow:hidden"><div style="height:100%;border-radius:3px;background:#5EEAD4;width:{{ r.use }}%"></div></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="flex:1.4 1 560px;min-width:0">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px">
+        <div style="font-size:13px;font-weight:700;color:#A9BACB">Raw capacity by location · select a tower</div>
+        <div style="display:flex;gap:16px;font-size:12px;color:#A9BACB">
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#2CC4AE;display:inline-block"></span>In use</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#3E5C79;display:inline-block"></span>Free</span>
+        </div>
+      </div>
+      <div style="position:relative;width:100%;max-width:740px;margin:0 auto">
+        <svg viewBox="0 0 700 300" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:0;top:44px;width:100%;height:calc(100% - 104px)">
+          <path class="flow" d="M70 270 Q140 300 210 270 T350 270 T490 270 T630 270" fill="none" stroke="#5EEAD4" stroke-opacity=".55" stroke-width="2" stroke-dasharray="6 10" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <div style="position:relative;display:flex;align-items:flex-end">
+          <sc-for list="{{ towers }}" as="t" hint-placeholder-count="5">
+            <button class="tbtn" onClick="{{ t.pick }}" aria-pressed="{{ t.pressed }}" aria-label="{{ t.aria }}" style="flex:1 1 0;min-width:0;background:transparent;border:0;padding:6px 0 10px;border-radius:20px;color:#fff;display:flex;flex-direction:column;align-items:center;opacity:{{ t.opacity }}">
+              <svg viewBox="0 0 140 300" style="width:100%;height:auto;display:block" aria-hidden="true">
+                <path d="M70 253 L116 276 L70 299 L24 276 Z" fill="{{ t.tileFill }}" stroke="{{ t.tileStroke }}" stroke-width="1.5"/>
+                <path d="{{ t.dt }}" fill="#3E5C79"/>
+                <path d="{{ t.dl }}" fill="#28425B"/>
+                <path d="{{ t.dr }}" fill="#1C3247"/>
+                <path d="{{ t.lt }}" fill="#8EF5E3"/>
+                <path d="{{ t.ll }}" fill="#2CC4AE"/>
+                <path d="{{ t.lr }}" fill="#14907F"/>
+              </svg>
+              <div style="font-size:16px;font-weight:800;margin-top:2px">{{ t.name }}</div>
+              <div class="num" style="font-size:12px;color:#A9BACB">{{ t.shareText }} of total</div>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="margin-top:14px;background:#11283D;border:1px solid #1D3A52;border-radius:20px;padding:18px 24px">
+        <div style="font-size:13px;font-weight:700;color:#5EEAD4;margin-bottom:12px">{{ readTitle }}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:20px 36px">
+          <sc-for list="{{ readStats }}" as="x" hint-placeholder-count="4">
+            <div style="min-width:110px">
+              <div style="font-size:12px;color:#A9BACB;margin-bottom:2px">{{ x.k }}</div>
+              <div class="num" style="font-size:22px;font-weight:800;letter-spacing:-0.01em">{{ x.v }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION DETAIL (drill-down) -->
+<sc-if value="{{ showSite }}" hint-placeholder-val="{{ false }}">
+<section style="margin-top:24px;background:#fff;border:1px solid #E4E2DA;border-radius:28px;padding:36px 40px;box-shadow:0 1px 2px rgba(11,27,43,.04),0 12px 32px -16px rgba(11,27,43,.18)">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+    <div>
+      <div style="font-size:12px;font-weight:800;letter-spacing:.12em;color:#0A7A6D">LOCATION DETAIL</div>
+      <h2 style="margin:4px 0 0;font-size:28px;font-weight:800;letter-spacing:-0.02em">{{ siteName }}</h2>
+      <div style="font-size:15px;color:#5B6877;margin-top:4px">{{ siteNote }}</div>
+    </div>
+    <button onClick="{{ closeSite }}" style="background:#fff;border:1px solid #CFCBBF;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700;color:#12202E">Close</button>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:32px;margin-top:28px">
+    <sc-for list="{{ siteRes }}" as="r" hint-placeholder-count="3">
+      <div style="flex:1 1 260px;border:1px solid #E4E2DA;border-radius:20px;padding:22px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#5B6877;text-transform:uppercase">{{ r.name }}</div>
+        <div class="num" style="font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:4px 0 14px">{{ r.value }}</div>
+        <div style="height:8px;border-radius:4px;background:#E7E5DD;overflow:hidden"><div style="height:100%;border-radius:4px;background:#0E9F8E;width:{{ r.use }}%"></div></div>
+        <div class="num" style="font-size:13px;color:#5B6877;margin-top:8px">{{ r.use }}% in use</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<!-- HEALTH -->
+<section id="health" style="margin-top:72px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px">
+    <div>
+      <h2 style="margin:0;font-size:32px;font-weight:800;letter-spacing:-0.02em">Is it healthy?</h2>
+      <div style="font-size:16px;color:#5B6877;margin-top:6px">Three questions, answered for the last 7 days. Open a card for the trend and the last hour.</div>
+    </div>
+    <div style="font-size:13px;color:#5B6877">Mon 12 Oct, 20:29 to Mon 19 Oct, 20:29</div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <sc-for list="{{ hcards }}" as="c" hint-placeholder-count="3">
+      <div class="lift" style="flex:1 1 300px;min-width:0;background:#fff;border:2px solid {{ c.border }};border-radius:28px;padding:30px 30px 26px;box-shadow:0 1px 2px rgba(11,27,43,.04),0 12px 32px -16px rgba(11,27,43,.18);display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div style="display:flex;align-items:center;gap:14px">
+            <sc-if value="{{ c.isUp }}" hint-placeholder-val="{{ true }}">
+              <svg width="64" height="64" viewBox="0 0 72 72" aria-hidden="true">
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#E7E5DD" stroke-width="8"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#0E9F8E" stroke-width="8" stroke-dasharray="21 4.96" transform="rotate(-90 36 36)"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#D9A441" stroke-width="8" stroke-dasharray="0 25.13 21 400" transform="rotate(-90 36 36)"/>
+                <path d="M26 37 L33 44 L46 29" fill="none" stroke="#0B1B2B" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </sc-if>
+            <sc-if value="{{ c.isFast }}" hint-placeholder-val="{{ false }}">
+              <svg width="64" height="64" viewBox="0 0 72 72" aria-hidden="true">
+                <path d="M8 48 A28 28 0 0 1 64 48" fill="none" stroke="#E7E5DD" stroke-width="9" stroke-linecap="round"/>
+                <path d="M8 48 A28 28 0 0 1 52.5 25.4" fill="none" stroke="#0E9F8E" stroke-width="9" stroke-linecap="round"/>
+                <path d="M36 48 L48.9 30.2" stroke="#0B1B2B" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="36" cy="48" r="6" fill="#0B1B2B"/>
+                <circle cx="36" cy="48" r="2.2" fill="#8EF5E3"/>
+              </svg>
+            </sc-if>
+            <sc-if value="{{ c.isSec }}" hint-placeholder-val="{{ false }}">
+              <svg width="64" height="64" viewBox="0 0 72 72" aria-hidden="true">
+                <path d="M36 5 L61 14 V36 C61 53 49 63 36 69 C23 63 11 53 11 36 V14 Z" fill="#0B1B2B"/>
+                <path d="M36 14 L52 20 V36 C52 47 45 54 36 58 C27 54 20 47 20 36 V20 Z" fill="#14907F"/>
+                <path d="M36 14 L52 20 V36 C52 47 45 54 36 58 Z" fill="#0E9F8E"/>
+                <path d="M28 36 L34 42 L45 29" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </sc-if>
+            <div style="font-size:20px;font-weight:800;letter-spacing:-0.01em">{{ c.q }}</div>
+          </div>
+        </div>
+        <div style="display:inline-flex;align-self:flex-start;background:{{ c.chipBg }};color:{{ c.chipFg }};border-radius:999px;padding:6px 14px;font-size:13px;font-weight:800">{{ c.chip }}</div>
+        <div>
+          <div class="num" style="font-size:44px;font-weight:800;letter-spacing:-0.03em;line-height:1">{{ c.headline }}</div>
+          <div style="font-size:14px;color:#5B6877;margin-top:6px">{{ c.sub }}</div>
+        </div>
+        <svg viewBox="0 0 260 64" style="width:100%;height:64px;display:block" preserveAspectRatio="none" aria-hidden="true">
+          <path d="{{ c.sparkArea }}" fill="{{ c.color }}" fill-opacity=".12"/>
+          <path d="{{ c.spark }}" fill="none" stroke="{{ c.color }}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <div style="font-size:14px;line-height:1.5;color:#12202E">{{ c.sentence }}</div>
+        <button class="cardbtn" onClick="{{ c.pick }}" aria-expanded="{{ c.open }}" style="align-self:flex-start;background:#fff;border:1.5px solid #12202E;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700;color:#12202E;display:flex;align-items:center;gap:8px">{{ c.btn }}
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="transform:rotate({{ c.rot }}deg)"><path d="M3 5 L7 9 L11 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- health detail -->
+  <sc-if value="{{ showHealth }}" hint-placeholder-val="{{ false }}">
+  <div style="margin-top:24px;background:#fff;border:2px solid #0E9F8E;border-radius:28px;padding:36px 40px;box-shadow:0 1px 2px rgba(11,27,43,.04),0 12px 32px -16px rgba(11,27,43,.18)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:12px;font-weight:800;letter-spacing:.12em;color:#0A7A6D">DETAIL</div>
+        <h3 style="margin:4px 0 0;font-size:26px;font-weight:800;letter-spacing:-0.02em">{{ hd.title }}</h3>
+        <div style="font-size:15px;color:#5B6877;margin-top:4px;max-width:640px">{{ hd.subtitle }}</div>
+      </div>
+      <button onClick="{{ closeHealth }}" style="background:#fff;border:1px solid #CFCBBF;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700;color:#12202E">Close</button>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:28px">
+      <!-- 7 day chart -->
+      <div style="flex:2 1 560px;min-width:0">
+        <div style="font-size:13px;font-weight:800;letter-spacing:.08em;color:#5B6877;text-transform:uppercase">Last 7 days</div>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:6px 0 14px">
+          <div class="num" style="font-size:28px;font-weight:800;letter-spacing:-0.02em">{{ hd.mainVal }}</div>
+          <div style="font-size:13px;color:#5B6877">{{ hd.mainTime }}</div>
+        </div>
+        <div style="position:relative;margin-left:52px;padding-bottom:26px">
+          <div onMouseMove="{{ moveMain }}" style="position:relative;cursor:crosshair">
+            <svg viewBox="0 0 760 230" style="width:100%;height:auto;display:block" aria-hidden="true">
+              <path d="{{ main.gridPath }}" fill="none" stroke="#E4E2DA" stroke-width="1" vector-effect="non-scaling-stroke"/>
+              <path d="{{ main.targetPath }}" fill="none" stroke="#B45309" stroke-width="1.5" stroke-dasharray="5 5" vector-effect="non-scaling-stroke"/>
+              <path d="{{ main.markerPath }}" fill="none" stroke="#B45309" stroke-width="1.5" stroke-dasharray="3 4" vector-effect="non-scaling-stroke"/>
+              <path d="{{ main.area }}" fill="{{ main.color }}" fill-opacity=".12"/>
+              <path d="{{ main.bars }}" fill="{{ main.color }}" fill-opacity=".9"/>
+              <path d="{{ main.line }}" fill="none" stroke="{{ main.color }}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+              <line x1="{{ main.cx }}" x2="{{ main.cx }}" y1="0" y2="230" stroke="#12202E" stroke-opacity=".4" stroke-width="1" vector-effect="non-scaling-stroke"/>
+              <circle cx="{{ main.cx }}" cy="{{ main.cy }}" r="6" fill="#fff" stroke="#12202E" stroke-width="3"/>
+            </svg>
+            <sc-for list="{{ main.grid }}" as="g" hint-placeholder-count="4">
+              <div style="position:absolute;left:-52px;width:44px;text-align:right;font-size:11px;color:#5B6877;top:{{ g.top }}%;transform:translateY(-50%)">{{ g.label }}</div>
+            </sc-for>
+          </div>
+          <sc-for list="{{ main.xt }}" as="t" hint-placeholder-count="7">
+            <div style="position:absolute;bottom:0;left:{{ t.left }}%;transform:translateX({{ t.shift }});font-size:11px;color:#5B6877;white-space:nowrap">{{ t.label }}</div>
+          </sc-for>
+        </div>
+        <div style="margin-left:52px;margin-top:6px">
+          <input type="range" min="0" max="83" step="1" value="{{ cmStr }}" onChange="{{ setCm }}" aria-label="Move through the last 7 days" style="width:100%;accent-color:#0A7A6D;margin:0">
+        </div>
+      </div>
+
+      <!-- last hour -->
+      <div style="flex:1 1 340px;min-width:0">
+        <div style="font-size:13px;font-weight:800;letter-spacing:.08em;color:#5B6877;text-transform:uppercase">Last hour</div>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:6px 0 14px">
+          <div class="num" style="font-size:28px;font-weight:800;letter-spacing:-0.02em">{{ hd.hourVal }}</div>
+          <div style="font-size:13px;color:#5B6877">{{ hd.hourTime }}</div>
+        </div>
+        <div style="position:relative;margin-left:44px;padding-bottom:26px">
+          <div onMouseMove="{{ moveHour }}" style="position:relative;cursor:crosshair">
+            <svg viewBox="0 0 400 230" style="width:100%;height:auto;display:block" aria-hidden="true">
+              <path d="{{ hour.gridPath }}" fill="none" stroke="#E4E2DA" stroke-width="1" vector-effect="non-scaling-stroke"/>
+              <path d="{{ hour.targetPath }}" fill="none" stroke="#B45309" stroke-width="1.5" stroke-dasharray="5 5" vector-effect="non-scaling-stroke"/>
+              <path d="{{ hour.area }}" fill="{{ hour.color }}" fill-opacity=".12"/>
+              <path d="{{ hour.bars }}" fill="{{ hour.color }}" fill-opacity=".9"/>
+              <path d="{{ hour.line }}" fill="none" stroke="{{ hour.color }}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+              <line x1="{{ hour.cx }}" x2="{{ hour.cx }}" y1="0" y2="230" stroke="#12202E" stroke-opacity=".4" stroke-width="1" vector-effect="non-scaling-stroke"/>
+              <circle cx="{{ hour.cx }}" cy="{{ hour.cy }}" r="6" fill="#fff" stroke="#12202E" stroke-width="3"/>
+            </svg>
+            <sc-for list="{{ hour.grid }}" as="g" hint-placeholder-count="4">
+              <div style="position:absolute;left:-44px;width:36px;text-align:right;font-size:11px;color:#5B6877;top:{{ g.top }}%;transform:translateY(-50%)">{{ g.label }}</div>
+            </sc-for>
+          </div>
+          <sc-for list="{{ hour.xt }}" as="t" hint-placeholder-count="5">
+            <div style="position:absolute;bottom:0;left:{{ t.left }}%;transform:translateX({{ t.shift }});font-size:11px;color:#5B6877;white-space:nowrap">{{ t.label }}</div>
+          </sc-for>
+        </div>
+        <div style="margin-left:44px;margin-top:6px">
+          <input type="range" min="0" max="59" step="1" value="{{ chStr }}" onChange="{{ setCh }}" aria-label="Move through the last hour" style="width:100%;accent-color:#0A7A6D;margin:0">
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:32px;margin-top:32px;padding-top:28px;border-top:1px solid #E4E2DA">
+      <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-size:13px;font-weight:800;letter-spacing:.08em;color:#5B6877;text-transform:uppercase">Right now</div>
+        <sc-for list="{{ hd.stats }}" as="s" hint-placeholder-count="3">
+          <div style="display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #EFEDE6;padding-bottom:10px">
+            <div style="font-size:15px;color:#5B6877">{{ s.k }}</div>
+            <div class="num" style="font-size:15px;font-weight:800">{{ s.v }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="flex:2 1 460px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-size:13px;font-weight:800;letter-spacing:.08em;color:#5B6877;text-transform:uppercase">What happened this week</div>
+        <sc-for list="{{ hd.events }}" as="e" hint-placeholder-count="1">
+          <div style="display:flex;gap:16px;align-items:flex-start;background:#FBF3E4;border-radius:16px;padding:16px 20px">
+            <div style="width:10px;height:10px;border-radius:50%;background:#B45309;margin-top:6px;flex:none"></div>
+            <div>
+              <div style="font-size:14px;font-weight:800;color:#7A3B06">{{ e.when }}</div>
+              <div style="font-size:15px;line-height:1.5;margin-top:2px">{{ e.text }}</div>
+            </div>
+          </div>
+        </sc-for>
+        <div style="font-size:15px;line-height:1.55;color:#12202E"><b>In plain terms:</b> {{ hd.meaning }}</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+</section>
+
+<!-- CAPACITY -->
+<section id="capacity" style="margin-top:72px">
+  <div style="margin-bottom:24px">
+    <h2 style="margin:0;font-size:32px;font-weight:800;letter-spacing:-0.02em">How long until we need more?</h2>
+    <div style="font-size:16px;color:#5B6877;margin-top:6px">Days of room left at today's pace of growth. The shortest runway sets the headline.</div>
+  </div>
+
+  <div style="background:#fff;border:1px solid #E4E2DA;border-radius:28px;padding:40px;box-shadow:0 1px 2px rgba(11,27,43,.04),0 12px 32px -16px rgba(11,27,43,.18)">
+    <div style="display:flex;flex-wrap:wrap;gap:48px;align-items:center">
+      <div style="flex:1 1 320px;max-width:380px;margin:0 auto">
+        <div style="position:relative">
+          <svg viewBox="0 0 300 180" style="width:100%;height:auto;display:block" aria-hidden="true">
+            <path d="M30 160 A120 120 0 0 1 270 160" fill="none" stroke="#E7E5DD" stroke-width="22" stroke-linecap="round"/>
+            <path d="{{ gaugeArc }}" fill="none" stroke="{{ gaugeColor }}" stroke-width="22" stroke-linecap="round"/>
+            <path d="{{ gaugeTicks }}" fill="none" stroke="#fff" stroke-width="3"/>
+          </svg>
+          <div style="position:absolute;left:0;right:0;bottom:6px;text-align:center">
+            <div class="num" style="font-size:64px;font-weight:800;letter-spacing:-0.04em;line-height:1">{{ daysAll }}</div>
+            <div style="font-size:15px;font-weight:700;color:#5B6877;margin-top:2px">days remaining</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#5B6877;padding:0 14px;margin-top:4px"><span>0</span><span>400+ days</span></div>
+      </div>
+
+      <div style="flex:2 1 520px;min-width:0;display:flex;flex-direction:column;gap:26px">
+        <sc-for list="{{ capRes }}" as="r" hint-placeholder-count="3">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+              <div style="font-size:17px;font-weight:800">{{ r.name }}</div>
+              <div style="font-size:14px;color:#5B6877"><b class="num" style="color:{{ r.color }};font-size:18px">{{ r.days }} days</b> · runs short about {{ r.date }}</div>
+            </div>
+            <div style="position:relative;height:16px;margin:0 8px">
+              <div style="position:absolute;left:0;top:0;height:16px;width:22.5%;background:#F6D6D1;border-radius:8px 0 0 8px"></div>
+              <div style="position:absolute;left:22.5%;top:0;height:16px;width:22.5%;background:#F5E1B8"></div>
+              <div style="position:absolute;left:45%;top:0;height:16px;width:55%;background:#D2ECE5;border-radius:0 8px 8px 0"></div>
+              <div style="position:absolute;top:-4px;left:{{ r.left }}%;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:#0B1B2B;border:4px solid #fff;box-sizing:border-box;box-shadow:0 2px 6px rgba(11,27,43,.35)"></div>
+            </div>
+          </div>
+        </sc-for>
+        <div style="display:flex;gap:22px;flex-wrap:wrap;font-size:12px;color:#5B6877;margin:0 8px">
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#F6D6D1;display:inline-block"></span>Under 90 days: act now</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#F5E1B8;display:inline-block"></span>90 to 180 days: plan and order</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#D2ECE5;display:inline-block"></span>Over 180 days: comfortable</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;background:#0B1B2B;color:#fff;border-radius:20px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:18px">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#5EEAD4" stroke-width="3"/><path d="M20 10 V21 L27 25" fill="none" stroke="#5EEAD4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>
+          <div style="font-size:12px;font-weight:800;letter-spacing:.12em;color:#5EEAD4">DECISION DATE</div>
+          <div style="font-size:18px;font-weight:700;margin-top:2px">{{ actionText }}</div>
+        </div>
+      </div>
+      <button class="cardbtn" onClick="{{ toggleCap }}" aria-expanded="{{ capOpen }}" style="background:transparent;border:1.5px solid #5EEAD4;color:#5EEAD4;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700">{{ capBtn }}</button>
+    </div>
+
+    <sc-if value="{{ capOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="margin-top:28px">
+      <div style="font-size:13px;font-weight:800;letter-spacing:.08em;color:#5B6877;text-transform:uppercase;margin-bottom:12px">By location, tightest first</div>
+      <sc-for list="{{ capRows }}" as="r" hint-placeholder-count="5">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding:16px 0;border-top:1px solid #EFEDE6">
+          <div style="flex:1 1 150px;min-width:0">
+            <div style="font-size:17px;font-weight:800">{{ r.name }}</div>
+            <div class="num" style="font-size:13px;color:#5B6877">{{ r.units }} units</div>
+          </div>
+          <div style="flex:1 1 160px;min-width:0">
+            <div style="height:8px;border-radius:4px;background:#E7E5DD;overflow:hidden"><div style="height:100%;border-radius:4px;background:#0E9F8E;width:{{ r.use }}%"></div></div>
+            <div class="num" style="font-size:13px;color:#5B6877;margin-top:6px">{{ r.use }}% in use</div>
+          </div>
+          <div style="flex:0 0 110px">
+            <svg viewBox="0 0 100 30" style="width:100px;height:30px;display:block" aria-hidden="true"><path d="{{ r.spark }}" fill="none" stroke="#2F6FDE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>
+            <div style="font-size:11px;color:#5B6877">7-day use</div>
+          </div>
+          <div style="flex:0 0 130px"><span class="num" style="display:inline-block;background:{{ r.bg }};color:{{ r.fg }};border-radius:999px;padding:6px 14px;font-size:14px;font-weight:800">{{ r.days }} days</span></div>
+          <div style="flex:2 1 220px;font-size:14px;color:#12202E;line-height:1.45">{{ r.note }}</div>
+        </div>
+      </sc-for>
+      <div style="font-size:13px;color:#5B6877;margin-top:10px">The headline counts all locations together. A single location can run short sooner.</div>
+    </div>
+    </sc-if>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section id="value" style="margin-top:72px">
+  <div style="margin-bottom:24px">
+    <h2 style="margin:0;font-size:32px;font-weight:800;letter-spacing:-0.02em">What the private cloud delivers</h2>
+    <div style="font-size:16px;color:#5B6877;margin-top:6px">Cost, protection and speed of delivery. Open a card for the evidence.</div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <sc-for list="{{ vcards }}" as="v" hint-placeholder-count="3">
+      <div class="lift" style="flex:1 1 300px;min-width:0;background:#fff;border:2px solid {{ v.border }};border-radius:28px;padding:30px 30px 26px;box-shadow:0 1px 2px rgba(11,27,43,.04),0 12px 32px -16px rgba(11,27,43,.18);display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <sc-if value="{{ v.isTco }}" hint-placeholder-val="{{ true }}">
+            <svg width="64" height="64" viewBox="0 0 72 72" aria-hidden="true">
+              <path d="M12 52 v7 c0 5 11 9 24 9 s24 -4 24 -9 v-7 z" fill="#0B6F63"/>
+              <ellipse cx="36" cy="52" rx="24" ry="9" fill="#12B3A0"/>
+              <path d="M12 40 v7 c0 5 11 9 24 9 s24 -4 24 -9 v-7 z" fill="#0B6F63"/>
+              <ellipse cx="36" cy="40" rx="24" ry="9" fill="#12B3A0"/>
+              <path d="M12 28 v7 c0 5 11 9 24 9 s24 -4 24 -9 v-7 z" fill="#0B1B2B"/>
+              <ellipse cx="36" cy="28" rx="24" ry="9" fill="#2A4A66"/>
+              <ellipse cx="36" cy="28" rx="14" ry="4.8" fill="none" stroke="#8EF5E3" stroke-width="1.5"/>
+            </svg>
+          </sc-if>
+          <sc-if value="{{ v.isRisk }}" hint-placeholder-val="{{ false }}">
+            <svg width="64" height="64" viewBox="0 0 72 72" aria-hidden="true">
+              <circle cx="36" cy="36" r="29" fill="#0B1B2B"/>
+              <circle cx="36" cy="36" r="22" fill="none" stroke="#fff" stroke-width="12"/>
+              <circle cx="36" cy="36" r="22" fill="none" stroke="#0E9F8E" stroke-width="12" stroke-dasharray="17.3 17.3" transform="rotate(-45 36 36)"/>
+              <circle cx="36" cy="36" r="13" fill="#0B1B2B"/>
+              <circle cx="36" cy="36" r="4" fill="#8EF5E3"/>
+            </svg>
+          </sc-if>
+          <sc-if value="{{ v.isSpeed }}" hint-placeholder-val="{{ false }}">
+            <svg width="64" height="64" viewBox="0 0 72 72" aria-hidden="true">
+              <rect x="29" y="5" width="14" height="9" rx="3" fill="#0B1B2B"/>
+              <circle cx="36" cy="41" r="27" fill="#0B1B2B"/>
+              <circle cx="36" cy="41" r="21" fill="#F3F1EC"/>
+              <path d="M36 41 L36 20 A21 21 0 0 1 54.2 30.5 Z" fill="#0E9F8E"/>
+              <path d="M36 41 L50 27" stroke="#0B1B2B" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="36" cy="41" r="4.5" fill="#0B1B2B"/>
+            </svg>
+          </sc-if>
+          <div style="font-size:20px;font-weight:800;letter-spacing:-0.01em">{{ v.q }}</div>
+        </div>
+        <div>
+          <div class="num" style="font-size:44px;font-weight:800;letter-spacing:-0.03em;line-height:1">{{ v.headline }}</div>
+          <div style="font-size:14px;color:#5B6877;margin-top:6px;line-height:1.45">{{ v.sub }}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ v.bars }}" as="b" hint-placeholder-count="2">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;gap:12px"><span style="color:#5B6877">{{ b.label }}</span><b class="num">{{ b.val }}</b></div>
+              <div style="height:10px;border-radius:5px;background:#EFEDE6;overflow:hidden"><div style="height:100%;border-radius:5px;background:{{ b.color }};width:{{ b.w }}%"></div></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size:14px;line-height:1.5">{{ v.sentence }}</div>
+        <button class="cardbtn" onClick="{{ v.pick }}" aria-expanded="{{ v.open }}" style="align-self:flex-start;background:#fff;border:1.5px solid #12202E;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700;color:#12202E;display:flex;align-items:center;gap:8px">{{ v.btn }}
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="transform:rotate({{ v.rot }}deg)"><path d="M3 5 L7 9 L11 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- cost detail -->
+  <sc-if value="{{ showTco }}" hint-placeholder-val="{{ false }}">
+  <div style="margin-top:24px;background:#fff;border:2px solid #0E9F8E;border-radius:28px;padding:36px 40px;box-shadow:0 1px 2px rgba(11,27,43,.04),0 12px 32px -16px rgba(11,27,43,.18)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:12px;font-weight:800;letter-spacing:.12em;color:#0A7A6D">DETAIL · TOTAL COST OF OWNERSHIP</div>
+        <h3 style="margin:4px 0 0;font-size:26px;font-weight:800;letter-spacing:-0.02em">Where the $38.6M a year goes</h3>
+      </div>
+      <button onClick="{{ closeValue }}" style="background:#fff;border:1px solid #CFCBBF;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700;color:#12202E">Close</button>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:28px">
+      <div style="flex:2 1 520px;min-width:0">
+        <div style="display:flex;height:44px;border-radius:12px;overflow:hidden">
+          <sc-for list="{{ tcoParts }}" as="p" hint-placeholder-count="4">
+            <div style="width:{{ p.w }}%;background:{{ p.color }}"></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
+          <sc-for list="{{ tcoParts }}" as="p" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:14px;border-bottom:1px solid #EFEDE6;padding-bottom:12px">
+              <span style="width:14px;height:14px;border-radius:4px;background:{{ p.color }};flex:none"></span>
+              <span style="flex:1;font-size:15px">{{ p.label }}</span>
+              <span class="num" style="font-size:15px;color:#5B6877">{{ p.pct }}%</span>
+              <b class="num" style="font-size:16px;width:70px;text-align:right">{{ p.val }}</b>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size:13px;font-weight:800;letter-spacing:.08em;color:#5B6877;text-transform:uppercase;margin:28px 0 8px">Running cost per day, last 7 days ($ thousands)</div>
+        <div style="position:relative;margin-left:44px;padding-bottom:26px">
+          <div style="position:relative">
+            <svg viewBox="0 0 560 160" style="width:100%;height:auto;display:block" aria-hidden="true">
+              <path d="{{ costc.gridPath }}" fill="none" stroke="#E4E2DA" stroke-width="1" vector-effect="non-scaling-stroke"/>
+              <path d="{{ costc.targetPath }}" fill="none" stroke="#B45309" stroke-width="1.5" stroke-dasharray="5 5" vector-effect="non-scaling-stroke"/>
+              <path d="{{ costc.area }}" fill="#0E9F8E" fill-opacity=".12"/>
+              <path d="{{ costc.line }}" fill="none" stroke="#0E9F8E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+            </svg>
+            <sc-for list="{{ costc.grid }}" as="g" hint-placeholder-count="3">
+              <div style="position:absolute;left:-44px;width:36px;text-align:right;font-size:11px;color:#5B6877;top:{{ g.top }}%;transform:translateY(-50%)">{{ g.label }}</div>
+            </sc-for>
+          </div>
+          <sc-for list="{{ costc.xt }}" as="t" hint-placeholder-count="7">
+            <div style="position:absolute;bottom:0;left:{{ t.left }}%;transform:translateX({{ t.shift }});font-size:11px;color:#5B6877">{{ t.label }}</div>
+          </sc-for>
+        </div>
+        <div style="font-size:12px;color:#5B6877;margin-top:2px">Dashed line: daily plan of $106K.</div>
+      </div>
+      <div style="flex:1 1 300px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+        <div style="position:relative;width:180px;height:180px">
+          <svg viewBox="0 0 140 140" width="180" height="180" aria-hidden="true">
+            <circle cx="70" cy="70" r="52" fill="none" stroke="#0E9F8E" stroke-width="18" stroke-dasharray="235.2 91.5" transform="rotate(-90 70 70)"/>
+            <circle cx="70" cy="70" r="52" fill="none" stroke="#E7E5DD" stroke-width="18" stroke-dasharray="91.5 235.2" stroke-dashoffset="-235.2" transform="rotate(-90 70 70)"/>
+          </svg>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+            <div class="num" style="font-size:34px;font-weight:800;letter-spacing:-0.03em">28%</div>
+            <div style="font-size:12px;color:#5B6877">spare capacity</div>
+          </div>
+        </div>
+        <div style="font-size:15px;line-height:1.55;max-width:280px">About <b>$10.8M</b> of yearly cost sits in spare capacity. It is the buffer that lets new work start straight away.</div>
+        <div style="font-size:12px;color:#5B6877;max-width:280px;line-height:1.5">The public-provider figure of $61.2M is an estimate of renting the same capacity.</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- risk detail -->
+  <sc-if value="{{ showRisk }}" hint-placeholder-val="{{ false }}">
+  <div style="margin-top:24px;background:#fff;border:2px solid #0E9F8E;border-radius:28px;padding:36px 40px;box-shadow:0 1px 2px rgba(11,27,43,.04),0 12px 32px -16px rgba(11,27,43,.18)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:12px;font-weight:800;letter-spacing:.12em;color:#0A7A6D">DETAIL · RISK</div>
+        <h3 style="margin:4px 0 0;font-size:26px;font-weight:800;letter-spacing:-0.02em">7 risks open. None are high.</h3>
+      </div>
+      <button onClick="{{ closeValue }}" style="background:#fff;border:1px solid #CFCBBF;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700;color:#12202E">Close</button>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:28px">
+      <div style="flex:1 1 360px;min-width:0">
+        <div style="font-size:13px;font-weight:800;letter-spacing:.08em;color:#5B6877;text-transform:uppercase;margin-bottom:12px">Open risks by likelihood and impact</div>
+        <div style="display:flex;gap:10px">
+          <div style="display:flex;flex-direction:column;justify-content:space-around;font-size:12px;color:#5B6877;text-align:right;width:70px;padding-bottom:28px">
+            <span>Likely</span><span>Possible</span><span>Unlikely</span>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:8px">
+              <sc-for list="{{ matrix }}" as="m" hint-placeholder-count="9">
+                <div style="height:78px;border-radius:14px;background:{{ m.bg }};color:{{ m.fg }};display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800" class="num">{{ m.n }}</div>
+              </sc-for>
+            </div>
+            <div style="display:flex;justify-content:space-around;font-size:12px;color:#5B6877;margin-top:8px"><span>Small impact</span><span>Medium</span><span>Large</span></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:#5B6877;margin-top:14px">
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#D2ECE5;display:inline-block"></span>Low</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#F5E1B8;display:inline-block"></span>Medium</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#F6D6D1;display:inline-block"></span>High</span>
+        </div>
+      </div>
+      <div style="flex:1.4 1 420px;min-width:0;display:flex;flex-direction:column;gap:14px">
+        <div style="font-size:13px;font-weight:800;letter-spacing:.08em;color:#5B6877;text-transform:uppercase">Protection checks</div>
+        <sc-for list="{{ riskRows }}" as="r" hint-placeholder-count="4">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid #E4E2DA;border-radius:16px;padding:14px 18px">
+            <div>
+              <div style="font-size:16px;font-weight:800">{{ r.name }}</div>
+              <div style="font-size:14px;color:#5B6877;margin-top:2px">{{ r.text }}</div>
+            </div>
+            <span style="flex:none;background:{{ r.bg }};color:{{ r.fg }};border-radius:999px;padding:6px 14px;font-size:13px;font-weight:800">{{ r.chip }}</span>
+          </div>
+        </sc-for>
+        <div style="font-size:14px;color:#5B6877">Open risks over 7 days: 8 until Thu 15 Oct, 7 since.</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- speed detail -->
+  <sc-if value="{{ showSpeed }}" hint-placeholder-val="{{ false }}">
+  <div style="margin-top:24px;background:#fff;border:2px solid #0E9F8E;border-radius:28px;padding:36px 40px;box-shadow:0 1px 2px rgba(11,27,43,.04),0 12px 32px -16px rgba(11,27,43,.18)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:12px;font-weight:800;letter-spacing:.12em;color:#0A7A6D">DETAIL · SPEED OF DELIVERY</div>
+        <h3 style="margin:4px 0 0;font-size:26px;font-weight:800;letter-spacing:-0.02em">From request to live in 3.8 hours</h3>
+      </div>
+      <button onClick="{{ closeValue }}" style="background:#fff;border:1px solid #CFCBBF;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700;color:#12202E">Close</button>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:28px">
+      <div style="flex:1 1 400px;min-width:0">
+        <div style="font-size:13px;font-weight:800;letter-spacing:.08em;color:#5B6877;text-transform:uppercase;margin-bottom:14px">A typical request, step by step</div>
+        <div style="display:flex;height:44px;border-radius:12px;overflow:hidden;gap:3px">
+          <sc-for list="{{ steps }}" as="p" hint-placeholder-count="3">
+            <div style="width:{{ p.w }}%;background:{{ p.color }}"></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
+          <sc-for list="{{ steps }}" as="p" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:14px;border-bottom:1px solid #EFEDE6;padding-bottom:12px">
+              <span style="width:14px;height:14px;border-radius:4px;background:{{ p.color }};flex:none"></span>
+              <span style="flex:1;font-size:15px">{{ p.label }}</span>
+              <b class="num" style="font-size:16px">{{ p.val }}</b>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size:14px;color:#5B6877;margin-top:14px;line-height:1.5">A year ago the same request took 11 days and several hand-offs between teams.</div>
+      </div>
+      <div style="flex:1 1 400px;min-width:0">
+        <div style="font-size:13px;font-weight:800;letter-spacing:.08em;color:#5B6877;text-transform:uppercase">Requests delivered per day, last 7 days</div>
+        <div class="num" style="font-size:28px;font-weight:800;letter-spacing:-0.02em;margin:6px 0 14px">194 <span style="font-size:14px;font-weight:600;color:#5B6877;letter-spacing:0">this week</span></div>
+        <div style="position:relative;margin-left:36px;padding-bottom:44px">
+          <div style="position:relative">
+            <svg viewBox="0 0 440 200" style="width:100%;height:auto;display:block" aria-hidden="true">
+              <path d="{{ velc.gridPath }}" fill="none" stroke="#E4E2DA" stroke-width="1" vector-effect="non-scaling-stroke"/>
+              <path d="{{ velc.bars }}" fill="#0E9F8E"/>
+            </svg>
+            <sc-for list="{{ velc.grid }}" as="g" hint-placeholder-count="4">
+              <div style="position:absolute;left:-36px;width:28px;text-align:right;font-size:11px;color:#5B6877;top:{{ g.top }}%;transform:translateY(-50%)">{{ g.label }}</div>
+            </sc-for>
+          </div>
+          <sc-for list="{{ velc.xt }}" as="t" hint-placeholder-count="7">
+            <div style="position:absolute;bottom:0;left:{{ t.left }}%;transform:translateX({{ t.shift }});font-size:11px;color:#5B6877;text-align:center;line-height:1.5">{{ t.label }}<br><b class="num" style="color:#12202E;font-size:13px">{{ t.sub }}</b></div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+</section>
+
+<footer style="margin-top:64px;padding-top:24px;border-top:1px solid #DAD6CA;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:#5B6877">
+  <div>All figures are illustrative sample data for design review.</div>
+  <a class="nav" href="#top" style="font-weight:700">Back to top</a>
+</footer>
+
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2700}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { site: null, hOpen: null, vOpen: null, capOpen: false, cm: 83, ch: 59 };
+    this.DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    this.MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  }
+  S() { return Object.assign({ site: null, hOpen: null, vOpen: null, capOpen: false, cm: 83, ch: 59 }, this.state || {}); }
+  fmt(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  pad(n) { return n < 10 ? "0" + n : "" + n; }
+  rng(seed) {
+    let a = seed >>> 0;
+    return () => {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  addDays(d) {
+    const x = new Date(2026, 9, 19);
+    x.setDate(x.getDate() + d);
+    return x.getDate() + " " + this.MON[x.getMonth()] + " " + x.getFullYear();
+  }
+
+  buildChart(o) {
+    const W = o.W, H = o.H;
+    const pad = o.pad || [6, 6, 12, 8];
+    const pl = pad[0], pr = pad[1], pt = pad[2], pb = pad[3];
+    const pw = W - pl - pr, ph = H - pt - pb, n = o.vals.length;
+    const bar = o.type === "bar";
+    const slot = pw / n;
+    const X = (i) => (bar ? pl + slot * i + slot / 2 : pl + (n > 1 ? (i / (n - 1)) * pw : 0));
+    const Y = (v) => pt + ph - ((Math.min(Math.max(v, o.ymin), o.ymax) - o.ymin) / (o.ymax - o.ymin)) * ph;
+    const f = (v) => Math.round(v * 10) / 10;
+    let line = "", area = "", bars = "";
+    if (!bar) {
+      o.vals.forEach((v, i) => { line += (i ? "L" : "M") + f(X(i)) + " " + f(Y(v)) + " "; });
+      area = line + "L" + f(X(n - 1)) + " " + f(pt + ph) + " L" + f(X(0)) + " " + f(pt + ph) + " Z";
+    } else {
+      const bw = Math.max(1.5, slot * (o.barW || 0.68));
+      o.vals.forEach((v, i) => {
+        const x = X(i) - bw / 2, y = Y(v);
+        bars += "M" + f(x) + " " + f(y) + " h" + f(bw) + " v" + f(pt + ph - y) + " h" + f(-bw) + " Z ";
+      });
+    }
+    let gridPath = "";
+    const grid = [];
+    (o.yticks || []).forEach((t) => {
+      const y = Y(t);
+      gridPath += "M0 " + f(y) + " H" + W + " ";
+      grid.push({ top: ((y / H) * 100).toFixed(2), label: o.fmt(t) });
+    });
+    const targetPath = o.target != null ? "M0 " + f(Y(o.target)) + " H" + W : "";
+    let markerPath = "";
+    (o.markers || []).forEach((i) => { markerPath += "M" + f(X(i)) + " 0 V" + H + " "; });
+    const c = o.cursor;
+    const cx = c == null ? -50 : f(X(c));
+    const cy = c == null ? -50 : f(Y(o.vals[c]));
+    const xt = (o.xticks || []).map((t) => ({ left: ((X(t.i) / W) * 100).toFixed(2), label: t.label, sub: t.sub || "", shift: t.shift || "0" }));
+    return { line, area, bars, gridPath, grid, targetPath, markerPath, cx, cy, xt, color: o.color || "#0E9F8E" };
+  }
+
+  tower(n, lit) {
+    const a = 34, b = 17, h = 11, gap = 4, base = 270, cx = 70;
+    const o = { lt: "", ll: "", lr: "", dt: "", dl: "", dr: "" };
+    for (let i = 0; i < n; i++) {
+      const T = base - h - i * (h + gap);
+      const top = "M" + cx + " " + (T - b) + " L" + (cx + a) + " " + T + " L" + cx + " " + (T + b) + " L" + (cx - a) + " " + T + " Z ";
+      const left = "M" + (cx - a) + " " + T + " L" + cx + " " + (T + b) + " L" + cx + " " + (T + b + h) + " L" + (cx - a) + " " + (T + h) + " Z ";
+      const right = "M" + (cx + a) + " " + T + " L" + cx + " " + (T + b) + " L" + cx + " " + (T + b + h) + " L" + (cx + a) + " " + (T + h) + " Z ";
+      if (i < lit) { o.lt += top; o.ll += left; o.lr += right; } else { o.dt += top; o.dl += left; o.dr += right; }
+    }
+    return o;
+  }
+
+  data() {
+    if (this._d) return this._d;
+    const R = this.rng(20261019), N = 84;
+    const end = new Date(2026, 9, 19, 20, 0, 0);
+    const times = [];
+    for (let i = 0; i < N; i++) times.push(new Date(end.getTime() - (N - 1 - i) * 7200000));
+    const find = (day, h) => times.findIndex((t) => t.getDate() === day && t.getHours() === h);
+    const incI = find(14, 2), spkI = find(16, 2);
+    const up = [], fast = [], sec = [];
+    for (let i = 0; i < N; i++) {
+      const h = times[i].getHours();
+      const biz = Math.max(0, Math.sin((Math.PI * (h - 6)) / 14));
+      up.push(R() < 0.1 ? 99.98 : 100);
+      fast.push(0.185 + 0.04 * biz + (R() - 0.5) * 0.018);
+      sec.push(Math.round(1900 + 600 * R() + 500 * (1 - biz)));
+    }
+    up[incI] = 99.6; fast[incI] = 0.41; fast[incI + 1] = 0.27; sec[spkI] = 7400;
+    const lastFast = fast.slice(-6).reduce((a, b) => a + b, 0) / 6;
+    const hUp = [], hFast = [], hSec = [];
+    for (let i = 0; i < 60; i++) {
+      hUp.push(100);
+      hFast.push(lastFast + (R() - 0.5) * 0.02 + 0.004 * Math.sin(i / 5));
+      hSec.push(Math.round(14 + 8 * R() + (i % 11 === 0 ? 8 : 0)));
+    }
+    this._d = {
+      times, incI, spkI, up, fast, sec, hUp, hFast, hSec, lastFast,
+      meanUp: up.reduce((a, b) => a + b, 0) / N,
+      secTotal: sec.reduce((a, b) => a + b, 0),
+      hourSec: hSec.reduce((a, b) => a + b, 0),
+      slowMin: Math.max.apply(null, hFast)
+    };
+    return this._d;
+  }
+
+  renderVals() {
+    const s = this.S(), D = this.data(), self = this;
+    const fmt = (n) => this.fmt(n);
+    const DOW = this.DOW, MON = this.MON;
+
+    /* ---------- locations ---------- */
+    const TOTAL = 76800;
+    const sitesRaw = [
+      { id: "sg", name: "Singapore", units: 21500, use: 74, days: 232, note: "Comfortable. Room to take on more work." },
+      { id: "va", name: "Virginia", units: 19200, use: 69, days: 188, note: "Comfortable." },
+      { id: "fr", name: "Frankfurt", units: 16900, use: 71, days: 201, note: "Comfortable." },
+      { id: "tk", name: "Tokyo", units: 10700, use: 78, days: 119, note: "Running tightest. Moving work to London would add about 40 days." },
+      { id: "ld", name: "London", units: 8500, use: 64, days: 276, note: "Most room to grow." }
+    ];
+    const zone = (d) => (d < 90 ? { fg: "#8F1D13", bg: "#F6D6D1", c: "#B42318" } : d < 180 ? { fg: "#7A3B06", bg: "#F5E1B8", c: "#B45309" } : { fg: "#0A5E54", bg: "#D2ECE5", c: "#0A7A6D" });
+    let useSum = 0;
+    sitesRaw.forEach((x) => { useSum += x.units * x.use; });
+    const cUse = Math.round(useSum / TOTAL);
+    let mSum = 0, sSum = 0;
+    sitesRaw.forEach((x) => { mSum += x.units * Math.min(95, x.use + 7); sSum += x.units * (x.use - 13); });
+    const mUse = Math.round(mSum / TOTAL), sUse = Math.round(sSum / TOTAL);
+    const daysAll = 167;
+    const sel = sitesRaw.find((x) => x.id === s.site) || null;
+
+    const towers = sitesRaw.map((x) => {
+      const n = Math.round(x.units / 1500);
+      const lit = Math.round((n * x.use) / 100);
+      const p = this.tower(n, lit);
+      const on = s.site === x.id;
+      return Object.assign({}, p, {
+        name: x.name,
+        shareText: Math.round((x.units / TOTAL) * 100) + "%",
+        opacity: s.site && !on ? 0.5 : 1,
+        pressed: on,
+        aria: x.name + ", " + fmt(x.units) + " units of computing power, " + x.use + "% in use",
+        tileFill: on ? "#1B4A63" : "#13304A",
+        tileStroke: on ? "#5EEAD4" : "#25506F",
+        pick: () => self.setState({ site: on ? null : x.id })
+      });
+    });
+    const readTitle = sel ? sel.name : "All five locations combined";
+    const readStats = sel
+      ? [
+          { k: "Computing power", v: fmt(sel.units) + " units" },
+          { k: "Share of total", v: Math.round((sel.units / TOTAL) * 100) + "%" },
+          { k: "In use", v: sel.use + "%" },
+          { k: "Days remaining", v: sel.days }
+        ]
+      : [
+          { k: "Computing power", v: fmt(TOTAL) + " units" },
+          { k: "Locations", v: "5" },
+          { k: "In use", v: cUse + "%" },
+          { k: "Days remaining", v: daysAll }
+        ];
+    const heroRes = [
+      { name: "Computing power", value: fmt(TOTAL) + " units", eq: "About 9,600 top-end laptops working as one", use: cUse, useText: cUse + "% in use" },
+      { name: "Working memory", value: "480 terabytes", eq: "About 15,000 laptops' worth", use: mUse, useText: mUse + "% in use" },
+      { name: "Storage", value: "21 petabytes", eq: "About 21,000 laptops' worth", use: sUse, useText: sUse + "% in use" }
+    ];
+    const siteRes = sel
+      ? [
+          { name: "Computing power", value: fmt(sel.units) + " units", use: sel.use },
+          { name: "Working memory", value: Math.round((sel.units / TOTAL) * 480) + " terabytes", use: Math.min(95, sel.use + 7) },
+          { name: "Storage", value: ((sel.units / TOTAL) * 21).toFixed(1) + " petabytes", use: sel.use - 13 }
+        ]
+      : [];
+
+    /* ---------- health ---------- */
+    const mainTicks = [];
+    D.times.forEach((t, i) => { if (t.getHours() === 0) mainTicks.push({ i, label: DOW[t.getDay()] + " " + t.getDate(), shift: "0" }); });
+    const hourTicks = [
+      { i: 0, label: "60 min ago", shift: "0" }, { i: 15, label: "45", shift: "-50%" }, { i: 30, label: "30", shift: "-50%" },
+      { i: 45, label: "15", shift: "-50%" }, { i: 59, label: "Now", shift: "-100%" }
+    ];
+    const upY = [99.4, 99.6, 99.8, 100];
+    const fastY = [0.1, 0.2, 0.3, 0.4, 0.5];
+    const cfg = {
+      up: {
+        color: "#0E9F8E", q: "Is it up?", chip: "Yes, fully running", headline: D.meanUp.toFixed(3) + "%", sub: "of the time available, last 7 days",
+        sentence: "Business services stayed available all week. One brief dip on Wed 14 Oct was handled automatically.",
+        title: "Is it up? Availability", subtitle: "The share of time business services were fully available to staff and customers.",
+        main: { vals: D.up, ymin: 99.4, ymax: 100, yticks: upY, fmt: (v) => v.toFixed(1) + "%", type: "line", markers: [D.incI] },
+        hour: { vals: D.hUp, ymin: 99.4, ymax: 100, yticks: upY, fmt: (v) => v.toFixed(1) + "%", type: "line" },
+        rv: (v) => (v >= 100 ? "100%" : v.toFixed(2) + "%") + " available",
+        spark: { vals: D.up, ymin: 99.4, ymax: 100 },
+        stats: [{ k: "Last hour", v: "100% available" }, { k: "Last incident", v: "5 days ago" }, { k: "Target", v: "99.95%" }],
+        events: [{ when: "Wed 14 Oct · 02:00", text: "One network route failed. Traffic moved to a backup route automatically. 0.4% of requests were affected." }],
+        meaning: "The platform was there when the business needed it."
+      },
+      fast: {
+        color: "#2F6FDE", q: "Is it fast?", chip: "Yes, within target", headline: D.lastFast.toFixed(2) + " s", sub: "typical wait for a screen to respond",
+        sentence: "Responses stayed under the 0.30 second target all week, apart from one slowdown on Wed 14 Oct.",
+        title: "Is it fast? Response time", subtitle: "How long people wait for business applications to respond. Lower is better.",
+        main: { vals: D.fast, ymin: 0.1, ymax: 0.5, yticks: fastY, fmt: (v) => v.toFixed(1) + " s", type: "line", target: 0.3, markers: [D.incI] },
+        hour: { vals: D.hFast, ymin: 0.1, ymax: 0.5, yticks: fastY, fmt: (v) => v.toFixed(1) + " s", type: "line", target: 0.3 },
+        rv: (v) => v.toFixed(2) + " seconds",
+        spark: { vals: D.fast, ymin: 0.1, ymax: 0.5 },
+        stats: [{ k: "Last hour, average", v: D.lastFast.toFixed(2) + " s" }, { k: "Slowest minute", v: D.slowMin.toFixed(2) + " s" }, { k: "Target", v: "under 0.30 s" }],
+        events: [{ when: "Wed 14 Oct · 02:00", text: "Responses slowed to 0.41 s for about 2 hours while traffic moved to the backup route." }],
+        meaning: "Staff and customers did not notice a delay, except briefly in the early hours of Wednesday."
+      },
+      secure: {
+        color: "#0B1B2B", q: "Is it secure?", chip: "Yes, protected", headline: "0 breaches", sub: fmt(D.secTotal) + " attacks blocked, last 7 days",
+        sentence: "Every attack was stopped. The largest was an automated scan on Fri 16 Oct.",
+        title: "Is it secure? Attacks blocked", subtitle: "Attempts to break in or disrupt services, and what happened to them. Nothing got through.",
+        main: { vals: D.sec, ymin: 0, ymax: 8000, yticks: [0, 2000, 4000, 6000, 8000], fmt: (v) => (v === 0 ? "0" : v / 1000 + "k"), type: "bar", markers: [D.spkI] },
+        hour: { vals: D.hSec, ymin: 0, ymax: 40, yticks: [0, 10, 20, 30, 40], fmt: (v) => "" + v, type: "bar" },
+        rv: (v) => fmt(v) + " blocked",
+        spark: { vals: D.sec, ymin: 0, ymax: 8000 },
+        stats: [{ k: "Blocked in the last hour", v: fmt(D.hourSec) }, { k: "Got through", v: "0" }, { k: "Security health score", v: "97 / 100" }],
+        events: [{ when: "Fri 16 Oct · 02:00", text: "An automated scan made about 7,400 attempts in 2 hours. All were blocked." }],
+        meaning: "Attackers tried and failed. No customer or company data was exposed."
+      }
+    };
+    const order = ["up", "fast", "secure"];
+    const hcards = order.map((k) => {
+      const c = cfg[k];
+      const sp = this.buildChart({ W: 260, H: 64, pad: [2, 2, 6, 6], vals: c.spark.vals, ymin: c.spark.ymin, ymax: c.spark.ymax, type: "line", yticks: [], fmt: String });
+      const open = s.hOpen === k;
+      return {
+        q: c.q, chip: c.chip, chipBg: "#D2ECE5", chipFg: "#0A5E54", headline: c.headline, sub: c.sub, sentence: c.sentence,
+        spark: sp.line, sparkArea: sp.area, color: c.color === "#0B1B2B" ? "#14907F" : c.color,
+        isUp: k === "up", isFast: k === "fast", isSec: k === "secure",
+        border: open ? "#0E9F8E" : "#E4E2DA", open, rot: open ? 180 : 0, btn: open ? "Hide detail" : "See detail",
+        pick: () => self.setState({ hOpen: open ? null : k, cm: 83, ch: 59 })
+      };
+    });
+
+    const key = s.hOpen;
+    const showHealth = !!key;
+    const dummy = this.buildChart({ W: 760, H: 230, vals: [0, 0], ymin: 0, ymax: 1, type: "line", yticks: [], fmt: String });
+    let main = dummy, hour = dummy, hd = { title: "", subtitle: "", mainVal: "", mainTime: "", hourVal: "", hourTime: "", stats: [], events: [], meaning: "" };
+    if (key) {
+      const c = cfg[key];
+      const col = key === "secure" ? "#14907F" : c.color;
+      const cm = Math.min(83, Math.max(0, s.cm)), ch = Math.min(59, Math.max(0, s.ch));
+      main = this.buildChart({ W: 760, H: 230, vals: c.main.vals, ymin: c.main.ymin, ymax: c.main.ymax, yticks: c.main.yticks, fmt: c.main.fmt, type: c.main.type, target: c.main.target, markers: c.main.markers, cursor: cm, xticks: mainTicks, color: col });
+      hour = this.buildChart({ W: 400, H: 230, vals: c.hour.vals, ymin: c.hour.ymin, ymax: c.hour.ymax, yticks: c.hour.yticks, fmt: c.hour.fmt, type: c.hour.type, target: c.hour.target, cursor: ch, xticks: hourTicks, color: col });
+      const t = D.times[cm];
+      hd = {
+        title: c.title, subtitle: c.subtitle,
+        mainVal: c.rv(c.main.vals[cm]),
+        mainTime: DOW[t.getDay()] + " " + t.getDate() + " " + MON[t.getMonth()] + ", 2 hours to " + this.pad(t.getHours()) + ":00",
+        hourVal: c.rv(c.hour.vals[ch]),
+        hourTime: ch === 59 ? "Now" : 59 - ch + " min ago",
+        stats: c.stats, events: c.events, meaning: c.meaning
+      };
+    }
+    const mkMove = (n, bar, field) => (e) => {
+      const r = e.currentTarget.getBoundingClientRect();
+      const f = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+      const idx = bar ? Math.min(n - 1, Math.floor(f * n)) : Math.round(f * (n - 1));
+      const st = {}; st[field] = idx; self.setState(st);
+    };
+
+    /* ---------- capacity ---------- */
+    const capDefs = [
+      { name: "Computing power", days: 214 },
+      { name: "Working memory", days: 167 },
+      { name: "Storage", days: 392 }
+    ];
+    const capRes = capDefs.map((r) => ({ name: r.name, days: r.days, date: this.addDays(r.days), left: Math.min(r.days / 400, 1) * 100, color: zone(r.days).c }));
+    const gz = zone(daysAll);
+    const f1 = Math.min(daysAll / 400, 1), th = Math.PI * (1 - f1);
+    const gaugeArc = "M30 160 A120 120 0 0 1 " + (150 + 120 * Math.cos(th)).toFixed(1) + " " + (160 - 120 * Math.sin(th)).toFixed(1);
+    let gaugeTicks = "";
+    [90, 180].forEach((d) => {
+      const a = Math.PI * (1 - d / 400);
+      gaugeTicks += "M" + (150 + 107 * Math.cos(a)).toFixed(1) + " " + (160 - 107 * Math.sin(a)).toFixed(1) + " L" + (150 + 133 * Math.cos(a)).toFixed(1) + " " + (160 - 133 * Math.sin(a)).toFixed(1) + " ";
+    });
+    const actionText = "Order more working memory by " + this.addDays(daysAll - 120) + ". Delivery takes about 4 months.";
+    const rs = this.rng(77);
+    const capRows = sitesRaw.slice().sort((a, b) => a.days - b.days).map((x) => {
+      const v = [];
+      for (let i = 0; i < 7; i++) v.push(x.use - 0.9 + (0.9 * i) / 6 + (rs() - 0.5) * 0.25);
+      const mn = Math.min.apply(null, v) - 0.2, mx = Math.max.apply(null, v) + 0.2;
+      const sp = this.buildChart({ W: 100, H: 30, pad: [2, 2, 4, 4], vals: v, ymin: mn, ymax: mx, type: "line", yticks: [], fmt: String });
+      const z = zone(x.days);
+      return { name: x.name, units: fmt(x.units), use: x.use, spark: sp.line, days: x.days, bg: z.bg, fg: z.fg, note: x.note };
+    });
+
+    /* ---------- value ---------- */
+    const vo = s.vOpen;
+    const vcards = [
+      {
+        k: "tco", q: "What does it cost?", headline: "$22.6M", sub: "saved each year against renting the same capacity",
+        bars: [{ label: "Our private cloud", val: "$38.6M", w: 63, color: "#0E9F8E" }, { label: "Same capacity from public providers", val: "$61.2M", w: 100, color: "#B8C2CC" }],
+        sentence: "Running cost is 37% below the public alternative. Cost per unit of work fell 11% this year.", isTco: true, isRisk: false, isSpeed: false
+      },
+      {
+        k: "risk", q: "What if it fails?", headline: "14 min", sub: "to recover from a major outage",
+        bars: [{ label: "Our recovery time", val: "14 min", w: 47, color: "#0E9F8E" }, { label: "Target", val: "30 min", w: 100, color: "#B8C2CC" }],
+        sentence: "The last recovery drill passed on 12 Oct. No high risks are open.", isTco: false, isRisk: true, isSpeed: false
+      },
+      {
+        k: "speed", q: "How quickly can we move?", headline: "3.8 hours", sub: "to deliver a new business environment",
+        bars: [{ label: "Today", val: "3.8 hours", w: 3, color: "#0E9F8E" }, { label: "A year ago", val: "11 days", w: 100, color: "#B8C2CC" }],
+        sentence: "194 requests were delivered this week. Most go live the same afternoon.", isTco: false, isRisk: false, isSpeed: true
+      }
+    ].map((v) => {
+      const open = vo === v.k;
+      return Object.assign({}, v, { border: open ? "#0E9F8E" : "#E4E2DA", open, rot: open ? 180 : 0, btn: open ? "Hide detail" : "See detail", pick: () => self.setState({ vOpen: open ? null : v.k }) });
+    });
+
+    const tcoRaw = [
+      { label: "People", v: 11.6, color: "#0B1B2B" }, { label: "Hardware and refresh", v: 11.2, color: "#0E9F8E" },
+      { label: "Facilities and power", v: 8.5, color: "#2F6FDE" }, { label: "Software and support", v: 7.3, color: "#B8C2CC" }
+    ];
+    const tcoParts = tcoRaw.map((p) => ({ label: p.label, color: p.color, w: ((p.v / 38.6) * 100).toFixed(1), pct: Math.round((p.v / 38.6) * 100), val: "$" + p.v.toFixed(1) + "M" }));
+    const costc = this.buildChart({ W: 560, H: 160, vals: [105.8, 106.2, 105.1, 106.9, 103.9, 104.2, 105.6], ymin: 100, ymax: 110, yticks: [100, 105, 110], fmt: (v) => "$" + v + "K", type: "line", target: 106, xticks: [0, 1, 2, 3, 4, 5, 6].map((i) => ({ i, label: ["Tue 13", "Wed 14", "Thu 15", "Fri 16", "Sat 17", "Sun 18", "Mon 19"][i], shift: "-50%" })), color: "#0E9F8E" });
+    const mx = [
+      { n: 0, lvl: 1 }, { n: 0, lvl: 2 }, { n: 0, lvl: 3 },
+      { n: 1, lvl: 1 }, { n: 1, lvl: 2 }, { n: 0, lvl: 2 },
+      { n: 2, lvl: 0 }, { n: 2, lvl: 0 }, { n: 1, lvl: 1 }
+    ];
+    // rows top to bottom: likely, possible, unlikely; columns small, medium, large impact
+    const mcounts = [[0, 0, 0], [1, 1, 0], [2, 2, 1]];
+    const sev = (r, c) => { const t = (2 - r) + c; return t >= 3 ? 2 : t === 2 ? 1 : 0; };
+    const sevCol = [{ bg: "#D2ECE5", fg: "#0A5E54" }, { bg: "#F5E1B8", fg: "#7A3B06" }, { bg: "#F6D6D1", fg: "#8F1D13" }];
+    const matrix = [];
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) { const sc = sevCol[sev(r, c)]; matrix.push({ n: mcounts[r][c], bg: sc.bg, fg: sc.fg }); }
+    const riskRows = [
+      { name: "Recovery drill", text: "Last full test passed on 12 Oct 2026.", chip: "Passed", bg: "#D2ECE5", fg: "#0A5E54" },
+      { name: "Data copies", text: "Copied to a second location every 15 minutes.", chip: "On track", bg: "#D2ECE5", fg: "#0A5E54" },
+      { name: "Audit evidence", text: "142 of 142 required controls are current.", chip: "Complete", bg: "#D2ECE5", fg: "#0A5E54" },
+      { name: "Supplier delivery", text: "New hardware orders are arriving later than quoted.", chip: "Watching", bg: "#F5E1B8", fg: "#7A3B06" }
+    ];
+    const steps = [
+      { label: "Approval", val: "12 min", w: 5.3, color: "#B8C2CC" },
+      { label: "Built automatically", val: "1.9 hours", w: 50, color: "#0E9F8E" },
+      { label: "Safety checks, then live", val: "1.7 hours", w: 44.7, color: "#0B1B2B" }
+    ];
+    const velVals = [34, 37, 31, 38, 12, 9, 33];
+    const velDays = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon"];
+    const velc = this.buildChart({ W: 440, H: 200, vals: velVals, ymin: 0, ymax: 45, yticks: [0, 15, 30, 45], fmt: (v) => "" + v, type: "bar", barW: 0.6, xticks: velVals.map((v, i) => ({ i, label: velDays[i], sub: "" + v, shift: "-50%" })), color: "#0E9F8E" });
+
+    return {
+      towers, readTitle, readStats, heroRes, showSite: !!sel, siteName: sel ? sel.name : "", siteNote: sel ? sel.note : "", siteRes,
+      closeSite: () => self.setState({ site: null }),
+      hcards, showHealth, main, hour, hd,
+      cmStr: "" + Math.min(83, Math.max(0, s.cm)), chStr: "" + Math.min(59, Math.max(0, s.ch)),
+      setCm: (e) => self.setState({ cm: parseInt(e.target.value, 10) }),
+      setCh: (e) => self.setState({ ch: parseInt(e.target.value, 10) }),
+      moveMain: mkMove(84, key === "secure", "cm"),
+      moveHour: mkMove(60, key === "secure", "ch"),
+      closeHealth: () => self.setState({ hOpen: null }),
+      daysAll, gaugeArc, gaugeColor: gz.c, gaugeTicks, capRes, actionText, capOpen: s.capOpen, capRows,
+      capBtn: s.capOpen ? "Hide locations" : "Show by location",
+      toggleCap: () => self.setState({ capOpen: !s.capOpen }),
+      vcards, showTco: vo === "tco", showRisk: vo === "risk", showSpeed: vo === "speed",
+      closeValue: () => self.setState({ vOpen: null }),
+      tcoParts, costc, matrix, riskRows, steps, velc
+    };
+  }
+}
+</script>
+</body>
+</html>
