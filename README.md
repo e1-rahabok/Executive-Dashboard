@@ -45,6 +45,7 @@ The private cloud is the largest computer in the organisation. The page shows th
 | `docs/ARCHITECTURE.md` | Proposed build architecture |
 | `docs/ROADMAP.md` | Phased plan |
 | `docs/OPEN-QUESTIONS.md` | Decisions still needed |
+| `CLAUDE.md` | Guide for Claude Code sessions |
 
 ## Viewing the mockup
 
