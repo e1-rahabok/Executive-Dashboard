@@ -40,6 +40,9 @@ Project guide for Claude Code. Read this first.
 |---|---|
 | `design/Main.dc.html` | Mockup source. Claude Design component format. Needs the Claude Design runtime (`support.js`). Not standalone. |
 | `design/canvas.json` | Canvas index. |
+| `design/export/index.html` | Generated standalone page. Do not edit by hand. |
+| `design/export/build.mjs` | Regenerate with `node design/export/build.mjs` after any change to `Main.dc.html`. |
+| `design/export/engine.js` | Small renderer for `{{ }}` holes, `sc-if`, `sc-for` and `on*` handlers. Inlined into the export. |
 | `docs/` | Specs and decisions. |
 
 ## Working conventions
@@ -60,5 +63,10 @@ Project guide for Claude Code. Read this first.
 
 1. Get answers to `docs/OPEN-QUESTIONS.md`.
 2. Validate metric sources.
-3. Export the mockup as a standalone static page in `design/export/`.
-4. Start phase 1 of `docs/ROADMAP.md`.
+3. Start phase 1 of `docs/ROADMAP.md`.
+
+## Commands
+
+- Regenerate standalone page: `node design/export/build.mjs` (Node 18 or later, no dependencies).
+- Preview: open `design/export/index.html` in a browser.
+- After regenerating, check the page in a browser: no console errors except blocked font loads, every "See detail" and tower click works.

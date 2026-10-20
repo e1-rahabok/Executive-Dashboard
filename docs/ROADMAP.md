@@ -11,7 +11,7 @@
 - [ ] Resolve `OPEN-QUESTIONS.md`.
 - [ ] Validate metric sources in `METRICS.md`.
 - [ ] Choose front-end stack.
-- [ ] Standalone static export of the mockup in `design/export/`.
+- [x] Standalone static export of the mockup in `design/export/`.
 - [ ] Theme file and copy file.
 - [ ] Fixture data matching the mockup.
 

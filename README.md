@@ -39,6 +39,9 @@ The private cloud is the largest computer in the organisation. The page shows th
 |---|---|
 | `design/Main.dc.html` | Mockup source (Claude Design component format) |
 | `design/canvas.json` | Canvas index for the mockup |
+| `design/export/index.html` | Standalone page, generated. Open in a browser. |
+| `design/export/build.mjs` | Generator: `Main.dc.html` to `index.html` |
+| `design/export/engine.js` | Small template renderer inlined into the export |
 | `docs/PRD.md` | Product requirements |
 | `docs/DESIGN.md` | UX and visual design decisions |
 | `docs/METRICS.md` | Metric definitions, plain-language label, candidate data source |
@@ -49,9 +52,18 @@ The private cloud is the largest computer in the organisation. The page shows th
 
 ## Viewing the mockup
 
-- `design/Main.dc.html` needs the Claude Design runtime (`support.js`). It does not open standalone in a browser.
-- Open it through Claude Design on claude.ai, or import the two files in `design/` into a new Design canvas.
-- Planned: a standalone static export in `design/export/`. See the roadmap.
+- **Standalone:** open `design/export/index.html` in any browser. One file. No server, no install.
+  - GitHub.com shows it as source only. Download the file or clone the repo, then open it.
+  - Fonts load from Google Fonts. Offline, the page falls back to system fonts.
+- **GitHub Pages (optional):** repo Settings, Pages, deploy from branch `main`, folder `/ (root)`. The page is then at `https://e1-rahabok.github.io/Executive-Dashboard/design/export/`.
+- **Source:** `design/Main.dc.html` needs the Claude Design runtime. It does not open standalone. It stays the source of truth.
+- **Regenerate the standalone file** after editing `Main.dc.html`:
+
+```
+node design/export/build.mjs
+```
+
+`index.html` is generated. Do not edit it by hand.
 
 ## Next steps
 
